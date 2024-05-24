@@ -38,8 +38,8 @@ public class ChromeTest {
     @Test
     void openChromeMobileViewPortSuccessfully(){
         Map<String, Object> deviceMetrics = new HashMap<>();
-        deviceMetrics.put("width", 390);
-        deviceMetrics.put("height", 844);
+        deviceMetrics.put("width", 430);
+        deviceMetrics.put("height", 932);
         Map<String, Object> mobileEmulation = new HashMap<>();
         mobileEmulation.put("deviceMetrics", deviceMetrics);
 
