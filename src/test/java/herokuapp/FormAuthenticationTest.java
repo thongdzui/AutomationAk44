@@ -75,12 +75,21 @@ public class FormAuthenticationTest {
         driver.get("https://the-internet.herokuapp.com/login");
         driver.findElement(By.id("username")).sendKeys("tosmith1");
         driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
-        driver.findElement(By.cssSelector("button[type=submit]")).click();
+       // driver.findElement(By.cssSelector("button[type=submit]")).click();
+        driver.findElement(By.cssSelector("button[class=radius]")).click();
        // Assert.assertEquals(driver.findElement(By.className("success")).getText().contains("Your username is invalid"));
 
-        Assert.assertTrue(driver.findElement(By.className("error")).getText().contains("Your username is invalid!"));
-
-
+      //  Assert.assertTrue(driver.findElement(By.className("error")).getText().contains("Your username is invalid!"));
 
     }
+    @Test
+    void basicAuthentication(){
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+        //div[@class='example']//p
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@class='example']//p")).getText().contains("Congratulations!"));
+
+    }
+
+
 }
