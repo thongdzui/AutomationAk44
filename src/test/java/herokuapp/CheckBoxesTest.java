@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CheckBoxesTest {
@@ -18,10 +20,15 @@ public class CheckBoxesTest {
      Verify checkbox2 is checked
      */
 
+    WebDriver driver;
+    @BeforeMethod
+    void setUp(){
+        driver = new ChromeDriver();
+        driver.get("https://the-internet.herokuapp.com/checkboxes");
+    }
     @Test
     void verifyAbleSelectACheckbox(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/checkboxes");
+
         // #checkboxes input:nth-child(1)
         // //input[@type='checkbox']/../input[1]
 
@@ -47,6 +54,9 @@ public class CheckBoxesTest {
         uncheck(driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]")));
         Assert.assertFalse(driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]")).isSelected());
 
+    }
+    @AfterMethod
+    void tearDown(){
         driver.quit();
     }
     public static void check(WebElement element){
@@ -59,5 +69,6 @@ public class CheckBoxesTest {
             element.click();
         }
     }
+
 
 }

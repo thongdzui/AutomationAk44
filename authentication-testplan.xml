@@ -1,0 +1,8 @@
+<suite name="Form Authentication" >
+    <test name="login">
+            <classes >
+                   <class name="herokuapp.FormAuthenticationTest"/>
+                    <class name="herokuapp.CheckBoxesTest"></class>
+            </classes>
+    </test>
+</suite>

@@ -1,0 +1,13 @@
+<suite name="Demo" >
+    <test name="sample">
+        <classes >
+            <class name="sample.ClassTest1"/>
+            <class name="sample.ClassTest2"></class>
+            <class name="sample.ClassTest3"></class>
+<!--                <methods>-->
+<!--                    <exclude name="tc01"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+        </classes>
+    </test>
+</suite>
