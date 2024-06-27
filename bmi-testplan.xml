@@ -1,0 +1,15 @@
+<suite name="caculator">
+
+    <test name="Body Mass Index - Fire fox">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="calculator.BodyMassIndexTest"></class>
+        </classes>
+    </test>
+    <test name="Body Mass Index - Chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="calculator.BodyMassIndexTest"></class>
+        </classes>
+    </test>
+</suite>

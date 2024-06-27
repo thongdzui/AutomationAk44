@@ -34,8 +34,9 @@ public class DropDownTest {
         select.selectByVisibleText("Option 1");
 
        // Assert.assertTrue(driver.findElement(By.cssSelector("#dropdown option[value='1']")).isSelected());
-        Assert.assertTrue(driver.findElement(By.xpath("//option[.='Option 1']")).isSelected());
+       // Assert.assertTrue(driver.findElement(By.xpath("//option[.='Option 1']")).isSelected());
         //.= viết tắt của Text
+        Assert.assertEquals(select.getFirstSelectedOption().getText(),"Option 1");
     }
     @Test
     void verifyAbleMultiSelectOpt(){
