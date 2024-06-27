@@ -8,14 +8,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 //selenium owner method
 public class Browser {
     private static WebDriver driver;
+    private static int MAX_TIME_OUT_SECOND = 30;
+    public static WebDriverWait wait;
+    public static Actions actions;
     public static void lauchBrowser(String name){
         switch (name){
             case "chrome":{
@@ -37,6 +43,8 @@ public class Browser {
             default:
                 throw new IllegalStateException("Unexpected value: " + name);
         }
+        wait = new WebDriverWait(driver, Duration.ofSeconds(MAX_TIME_OUT_SECOND));
+        actions = new Actions(driver);
     }
     public static void quit(){
         if(driver!=null){

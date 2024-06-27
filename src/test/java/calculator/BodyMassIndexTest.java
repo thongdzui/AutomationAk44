@@ -1,18 +1,16 @@
 package calculator;
 
-import org.openqa.selenium.WebDriver;
+
+import common.TestBase;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.BodyMassIndexPage;
 import supports.Browser;
 
-public class BodyMassIndexTest {
-    WebDriver driver;
-    @BeforeMethod
+public class BodyMassIndexTest extends TestBase {
+
+    @BeforeClass
     @Parameters({"browser"})
     void openBrowser(String browser){
         Browser.lauchBrowser(browser);
@@ -34,9 +32,8 @@ public class BodyMassIndexTest {
 
     }
 
-    @AfterMethod
-    void tearDown(ITestResult iTestResult){
-        if(!iTestResult.isSuccess()) Browser.takeScreenShot(iTestResult.getMethod().getMethodName());
+    @AfterClass
+    void closeBrowser(){
         Browser.quit();
     }
 

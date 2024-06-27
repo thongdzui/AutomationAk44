@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import supports.Browser;
 
 public class BodyMassIndexPage {
@@ -22,7 +23,8 @@ public class BodyMassIndexPage {
         Browser.visit("https://www.calculator.net/bmi-calculator.html");
     }
     public void selectMetricTab(){
-        Browser.click(metricTab);
+        Browser.wait.until(ExpectedConditions.visibilityOfElementLocated(metricTab)).click();
+       // Browser.click(metricTab);
     }
     public void clearMetricTab(){
         Browser.click(clearButton);
