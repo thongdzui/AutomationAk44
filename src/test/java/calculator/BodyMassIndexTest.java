@@ -24,17 +24,12 @@ public class BodyMassIndexTest extends TestBase {
         bodyMassIndexPage.openUrl();
         bodyMassIndexPage.selectMetricTab();
         bodyMassIndexPage.clearMetricTab();
-        bodyMassIndexPage.fillForm("30","male","170","65");
+        bodyMassIndexPage.fillForm("34","male","170","65");
         bodyMassIndexPage.selectCalculateButton();
 
 
-        Assert.assertEquals(bodyMassIndexPage.getResult(),"BMI = 22.5 kg/m2   (Normal)");
+        Assert.assertEquals(bodyMassIndexPage.getResult(),"BMI = 22.8 kg/m2   (Normal)");
 
-    }
-
-    @AfterClass
-    void closeBrowser(){
-        Browser.quit();
     }
 
 }

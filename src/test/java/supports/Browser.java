@@ -68,6 +68,12 @@ public class Browser {
             click(locator);
         }
     }
+    public static String getCurrentUrl(){
+        return driver.getCurrentUrl();
+    }
+    public static boolean isDisplayed(By locator){
+        return driver.findElement(locator).isDisplayed();
+    }
     public static void uncheck(By locator){
         if(driver.findElement(locator).isSelected()){
             click(locator);

@@ -7,7 +7,7 @@ import supports.Browser;
 
 public class BodyMassIndexPage {
 
-    By metricTab = By.xpath("//a[text()='Metric Units']");
+    //By metricTab = By.xpath("//a[text()='Metric Units']");
     By clearButton = By.xpath("//input[@value='Clear']");
     By ageTextbox = By.xpath("//input[@id='cage']");
     By maleRadioButton = By.id("csex1");
@@ -23,7 +23,7 @@ public class BodyMassIndexPage {
         Browser.visit("https://www.calculator.net/bmi-calculator.html");
     }
     public void selectMetricTab(){
-        Browser.wait.until(ExpectedConditions.visibilityOfElementLocated(metricTab)).click();
+        Browser.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Metric Units']"))).click();
        // Browser.click(metricTab);
     }
     public void clearMetricTab(){
