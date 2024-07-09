@@ -1,13 +1,15 @@
 package herokuapp;
 
-import org.openqa.selenium.By;
+import common.TestBase;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HyperLinkPage;
 
 
-public class HyperLinkTest {
+public class HyperLinkTest extends TestBase {
     /*
     Open browser
     Navigate to https://the-internet.herokuapp.com/status_codes
@@ -24,29 +26,29 @@ public class HyperLinkTest {
     Then "500 status code" page appear
 Click on "go here"
      */
+    HyperLinkPage hyperLinkPage = new HyperLinkPage();
     @Test
     void verifyAbleHyperLink() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/status_codes");
-        driver.findElement(By.linkText("200")).click();
-       // driver.findElement(By.xpath("//a[.='200']/@herf")).click();
+        hyperLinkPage.openUrl();
+        hyperLinkPage.clickLink200();
 
-        Assert.assertEquals(driver.getCurrentUrl(),"https://the-internet.herokuapp.com/status_codes/200");
-        driver.findElement(By.linkText("here")).click();
 
-        driver.findElement(By.linkText("301")).click();
-        Assert.assertEquals(driver.getCurrentUrl(),"https://the-internet.herokuapp.com/status_codes/301");
-        driver.findElement(By.linkText("here")).click();
 
-        driver.findElement(By.linkText("404")).click();
-        Assert.assertEquals(driver.getCurrentUrl(),"https://the-internet.herokuapp.com/status_codes/404");
-        driver.findElement(By.linkText("here")).click();
+        Assert.assertEquals(hyperLinkPage.getCurrentURl(),"https://the-internet.herokuapp.com/status_codes/200");
+        hyperLinkPage.clickHere();
 
-        driver.findElement(By.linkText("500")).click();
-        Assert.assertEquals(driver.getCurrentUrl(),"https://the-internet.herokuapp.com/status_codes/500");
-        driver.findElement(By.linkText("here")).click();
-        driver.quit();
 
+        hyperLinkPage.clickLink301();
+        Assert.assertEquals(hyperLinkPage.getCurrentURl(),"https://the-internet.herokuapp.com/status_codes/301");
+        hyperLinkPage.clickHere();
+
+        hyperLinkPage.clickLink404();
+        Assert.assertEquals(hyperLinkPage.getCurrentURl(),"https://the-internet.herokuapp.com/status_codes/404");
+        hyperLinkPage.clickHere();
+
+        hyperLinkPage.clickLink500();
+        Assert.assertEquals(hyperLinkPage.getCurrentURl(),"https://the-internet.herokuapp.com/status_codes/500");
+        hyperLinkPage.clickHere();
 
     }
 
