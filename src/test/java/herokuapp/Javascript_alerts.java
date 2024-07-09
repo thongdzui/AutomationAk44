@@ -1,55 +1,55 @@
 package herokuapp;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import common.TestBase;
+
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pages.Javascript_alertPage;
 
-public class Javascript_alerts {
-    WebDriver driver;
-    @BeforeClass
-    void SetUp(){
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+import java.time.Duration;
 
-    }
-    @Test
-    void clickOnJSAlertSuccessfully(){
+public class Javascript_alerts extends TestBase {
+    Javascript_alertPage javascript_alertPage = new Javascript_alertPage();
 
-        driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
-        driver.switchTo().alert().accept();
-        Assert.assertEquals(driver.findElement(By.id("result")).getText(),"You successfully clicked an alert");
+   @Test
+    void Tc01_clickOnJSAlertSuccessfully(){
+
+        javascript_alertPage.openUrl();
+        javascript_alertPage.clickJsAlert();
+        javascript_alertPage.acceptAlert();
+
+        Assert.assertEquals(javascript_alertPage.getAlertText(),"You successfully clicked an alert");
         //"//button[.='Click for JS Alert']"
 
     }
     @Test
-    void acceptOnJSConfirmSuccessfully(){
-        driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
-        driver.switchTo().alert().accept();
-        Assert.assertEquals(driver.findElement(By.id("result")).getText(),"You clicked: Ok");
+    void Tc02_acceptOnJSConfirmSuccessfully()  {
+        //javascript_alertPage.openUrl();
+        javascript_alertPage.clickJsConfirm();
+        javascript_alertPage.acceptAlert();
+
+        Assert.assertEquals(javascript_alertPage.getAlertText(),"You clicked: Ok");
         ////button[.='Click for JS Confirm']
 
     }
     @Test
-    void cancelOnJSConfirmSuccessfully(){
-        driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
-        driver.switchTo().alert().dismiss();
-        Assert.assertEquals(driver.findElement(By.id("result")).getText(),"You clicked: Cancel");
+    void Tc03_cancelOnJSConfirmSuccessfully()  {
+        javascript_alertPage.clickJsConfirm();
+        javascript_alertPage.dismmisAlert();
+
+        Assert.assertEquals(javascript_alertPage.getAlertText(),"You clicked: Cancel");
         ////button[.='Click for JS Confirm']
 
     }
     @Test
-    void clickOnJSPromptSuccessfully(){
-        driver.findElement(By.xpath("//button[.='Click for JS Prompt']")).click();
-        driver.switchTo().alert().sendKeys("Ok");
-        driver.switchTo().alert().accept();
-        Assert.assertEquals(driver.findElement(By.id("result")).getText(),"You entered: Ok");
+    void Tc04_clickOnJSPromptSuccessfully() {
+        javascript_alertPage.clickJsPrompt();
+        javascript_alertPage.sendKeyToAlert();
+        javascript_alertPage.acceptAlert();
+
+        Assert.assertEquals(javascript_alertPage.getAlertText(),"You entered: Ok");
         ////button[.='Click for JS Confirm']
 
     }
-    @AfterClass
-    void TearDown(){
-        driver.quit();
-    }
+
 }

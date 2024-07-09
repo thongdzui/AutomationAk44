@@ -114,5 +114,14 @@ public class Browser {
     public static int getElementWidth(By locator){
         return driver.findElement(locator).getSize().width;
     }
+    public static void accpetAlert(){
+        driver.switchTo().alert().accept();
+    }
+    public static void dismissAlert(){
+        driver.switchTo().alert().dismiss();
+    }
+    public static void sendKeyToAlert(String text){
+        driver.switchTo().alert().sendKeys(text);
+    }
 
 }
