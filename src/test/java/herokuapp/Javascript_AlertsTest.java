@@ -6,9 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.Javascript_alertPage;
 
-import java.time.Duration;
-
-public class Javascript_alerts extends TestBase {
+public class Javascript_AlertsTest extends TestBase {
     Javascript_alertPage javascript_alertPage = new Javascript_alertPage();
 
    @Test

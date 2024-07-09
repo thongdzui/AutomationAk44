@@ -1,23 +1,20 @@
 package herokuapp;
 
+import common.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.Test;
 
-public class ContextMenuTest {
-    WebDriver driver;
+import org.openqa.selenium.interactions.Actions;
+
+import org.testng.annotations.Test;
+import pages.ContextMenuPage;
+
+public class ContextMenuTest extends TestBase {
+
+    ContextMenuPage contextMenuPage = new ContextMenuPage();
     @Test
     void verifyContextMenu() {
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/context_menu");
-        Actions actions = new Actions(driver);
-        actions
-                .contextClick(driver.findElement(By.id("hot-spot")))
-                .perform();
+        contextMenuPage.open();
+        contextMenuPage.contextMenu();
 
-
-        driver.switchTo().alert().accept();
     }
 }

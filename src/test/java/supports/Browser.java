@@ -123,5 +123,12 @@ public class Browser {
     public static void sendKeyToAlert(String text){
         driver.switchTo().alert().sendKeys(text);
     }
+    public static void contextMenu(By locator){
+        Actions actions = new Actions(driver);
+        actions
+                .contextClick(driver.findElement(locator))
+                .perform();
+        driver.switchTo().alert().accept();
+    }
 
 }
