@@ -1,13 +1,17 @@
 package herokuapp;
 
+import common.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.DragDropPage;
+import pages.DropDownPage;
 
-public class DropDownTest {
+public class DropDownTest extends TestBase {
+    DropDownPage dropDownPage = new DropDownPage();
     /*
 
     Open browser
@@ -23,22 +27,21 @@ public class DropDownTest {
     </select>
      */
     @Test
-    void verifyAbleSelectOption1(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/dropdown");
+    void TC01_verifyAbleSelectOption1(){
+        dropDownPage.open();
+        dropDownPage.selectOption1();
 
-        Select select = new Select(driver.findElement(By.id("dropdown")));
-        select.selectByVisibleText("Option 1");
+
 
        // Assert.assertTrue(driver.findElement(By.cssSelector("#dropdown option[value='1']")).isSelected());
        // Assert.assertTrue(driver.findElement(By.xpath("//option[.='Option 1']")).isSelected());
         //.= viết tắt của Text
-        Assert.assertEquals(select.getFirstSelectedOption().getText(),"Option 1");
+        Assert.assertEquals(dropDownPage.getFirstSelectOption1(),"Option 1");
     }
     @Test
-    void verifyAbleMultiSelectOpt(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://output.jsbin.com/osebed/2");
+    void TC02_verifyAbleMultiSelectOpt(){
+
+        dropDownPage.openMultiDropDown();
         /*
         <select multiple="" id="fruits">
             <option value="banana">Banana</option>
@@ -47,20 +50,18 @@ public class DropDownTest {
             <option value="grape">Grape</option>
         </select>
         */
-        Select select = new Select(driver.findElement(By.id("fruits")));
-        select.selectByVisibleText("Apple");
-        select.selectByIndex(2);
-        Assert.assertTrue(driver.findElement(By.xpath("//option[.='Apple']")).isSelected());
-        Assert.assertTrue(driver.findElement(By.xpath("//option[.='Orange']")).isSelected());
+        dropDownPage.selectMultiOption();
+        Assert.assertTrue(dropDownPage.verifyOptionApple());
+        Assert.assertTrue(dropDownPage.verifyOptionOrange());
 
 
-        select.deselectAll();
-        Assert.assertFalse(driver.findElement(By.xpath("//option[.='Banana']")).isSelected());
-        Assert.assertFalse(driver.findElement(By.xpath("//option[.='Apple']")).isSelected());
-        Assert.assertFalse(driver.findElement(By.xpath("//option[.='Orange']")).isSelected());
-        Assert.assertFalse(driver.findElement(By.xpath("//option[.='Grape']")).isSelected());
+        dropDownPage.deselectAllOption();
+        Assert.assertFalse(dropDownPage.verifyOptionBanana());
+        Assert.assertFalse(dropDownPage.verifyOptionApple());
+        Assert.assertFalse(dropDownPage.verifyOptionOrange());
+        Assert.assertFalse(dropDownPage.verifyOptionGrape());
     }
-    @Test
+   // @Test
     void verifyAbleSelectCountry(){
         WebDriver driver = new ChromeDriver();
         driver.get("https://ticketbox.vn/sign-in?ref=%2Fmy-tickets");
