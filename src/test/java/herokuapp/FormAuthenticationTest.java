@@ -12,7 +12,7 @@ public class FormAuthenticationTest extends TestBase {
     @Parameters({"browser"})
     @BeforeClass
     void openBrowser(String browser){
-        Browser.lauchBrowser(browser);
+        Browser.launchBrowser(browser);
 
     }
     @DataProvider

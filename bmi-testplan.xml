@@ -1,9 +1,9 @@
-<suite name="caculator">
+<suite name="Run from XML">
 
     <test name="Form Authentication Test - Chrome">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="herokuapp.FormAuthenticationTest"></class>
+            <class name="herokuapp.CheckBoxesTest"></class>
         </classes>
     </test>
 <!--    <test name="Body Mass Index - Chrome">-->

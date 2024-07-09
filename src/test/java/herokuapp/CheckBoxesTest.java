@@ -1,5 +1,6 @@
 package herokuapp;
 
+import common.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,8 +9,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.CheckBoxesPage;
+import supports.Browser;
 
-public class CheckBoxesTest {
+public class CheckBoxesTest extends TestBase {
     /**
      *
      Open browser
@@ -21,54 +24,36 @@ public class CheckBoxesTest {
      */
 
     WebDriver driver;
-    @BeforeMethod
-    void setUp(){
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/checkboxes");
-    }
+    CheckBoxesPage checkBoxesPage = new CheckBoxesPage();
+
     @Test
     void verifyAbleSelectACheckbox(){
 
-        // #checkboxes input:nth-child(1)
-        // //input[@type='checkbox']/../input[1]
+        checkBoxesPage.openUrl();
+        checkBoxesPage.selectCheckbox("1");
 
-        check(driver.findElement(By.xpath("//*[@id='checkboxes']/input[1]")));
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='checkboxes']/input[1]")).isSelected());
+        Assert.assertTrue(checkBoxesPage.isCheckboxSelected("1"));
 
 
-        check(driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]")));
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]")).isSelected());
-        //form[@id='checkboxes']//input[2]//@checked
-        driver.quit();
+        checkBoxesPage.selectCheckbox("2");
+        Assert.assertTrue(checkBoxesPage.isCheckboxSelected("2"));
+
     }
     @Test
     void verifyAbleUnSelectACheckbox(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/checkboxes");
 
+        checkBoxesPage.openUrl();
 
-        uncheck(driver.findElement(By.xpath("//*[@id='checkboxes']/input[1]")));
-        Assert.assertFalse(driver.findElement(By.xpath("//*[@id='checkboxes']/input[1]")).isSelected());
+        checkBoxesPage.deselectCheckbox("1");
 
+        Assert.assertFalse(checkBoxesPage.isCheckboxSelected("1"));
 
-        uncheck(driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]")));
-        Assert.assertFalse(driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]")).isSelected());
+        checkBoxesPage.deselectCheckbox("2");
+        Assert.assertFalse(checkBoxesPage.isCheckboxSelected("2"));
 
     }
-    @AfterMethod
-    void tearDown(){
-        driver.quit();
-    }
-    public static void check(WebElement element){
-        if(!element.isSelected()){
-            element.click();
-        }
-    }
-    public static void uncheck(WebElement element){
-        if(element.isSelected()){
-            element.click();
-        }
-    }
+
+
 
 
 }

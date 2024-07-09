@@ -1,10 +1,7 @@
 package supports;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,7 +19,7 @@ public class Browser {
     private static int MAX_TIME_OUT_SECOND = 30;
     public static WebDriverWait wait;
     public static Actions actions;
-    public static void lauchBrowser(String name){
+    public static void launchBrowser(String name){
         switch (name){
             case "chrome":{
                 driver =  new ChromeDriver();
@@ -60,6 +57,9 @@ public class Browser {
     public static void sendKeys(By locator, CharSequence... keyToSend){
         driver.findElement(locator).sendKeys(keyToSend);
     }
+    public static WebElement getElement(By locator){
+        return driver.findElement(locator);
+    }
     public static String getText(By locator){
         return driver.findElement(locator).getText();
     }
@@ -79,6 +79,13 @@ public class Browser {
             click(locator);
         }
     }
+    public static boolean isSelected(By locator){
+        return driver.findElement(locator).isSelected();
+
+    }
+    public static void dragAndDrop(By from, By to){
+        actions.dragAndDrop(driver.findElement(from), driver.findElement(to)).perform();
+    }
     public static void takeScreenShot(String name){
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
         File srcFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
@@ -89,7 +96,23 @@ public class Browser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static void infiniteScroll() throws InterruptedException {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        for (int i =0;i<4;i++){
+            Thread.sleep(2000);
+            javascriptExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        }
+    }
+    public static void horizonalSlider(int xOffSet, By locator){
+        WebElement pointer = driver.findElement(locator);
+        actions.clickAndHold(pointer)
+                .moveByOffset(xOffSet,0)
+                .perform();
 
+    }
+    public static int getElementWidth(By locator){
+        return driver.findElement(locator).getSize().width;
     }
 
 }
