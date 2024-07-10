@@ -118,7 +118,7 @@ public class Browser {
     public static int getElementWidth(By locator){
         return driver.findElement(locator).getSize().width;
     }
-    public static void accpetAlert(){
+    public static void acceptAlert(){
         driver.switchTo().alert().accept();
     }
     public static void dismissAlert(){
@@ -127,17 +127,14 @@ public class Browser {
     public static void sendKeyToAlert(String text){
         driver.switchTo().alert().sendKeys(text);
     }
-    public static void contextMenu(By locator){
+    public static void contextClick(By locator){
         Actions actions = new Actions(driver);
-        actions
-                .contextClick(driver.findElement(locator))
+        actions.contextClick(driver.findElement(locator))
                 .perform();
-        driver.switchTo().alert().accept();
     }
     public static void hoverAction(By locator){
         Actions actions = new Actions(driver);
-        actions
-                .moveToElement(driver.findElement(locator))
+        actions.moveToElement(driver.findElement(locator))
                 .perform();
     }
     public static void switchToFrame(String frameName){

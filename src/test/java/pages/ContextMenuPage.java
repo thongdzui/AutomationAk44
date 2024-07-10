@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 import supports.Browser;
 
 public class ContextMenuPage {
@@ -10,6 +9,7 @@ public class ContextMenuPage {
         Browser.visit("https://the-internet.herokuapp.com/context_menu");
     }
     public void contextMenu(){
-        Browser.contextMenu(belowBox);
+        Browser.contextClick(belowBox);
+        Browser.acceptAlert();
     }
 }

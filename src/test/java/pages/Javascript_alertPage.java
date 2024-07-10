@@ -24,7 +24,7 @@ public class Javascript_alertPage {
         return Browser.getText(JsResult);
     }
     public void acceptAlert(){
-        Browser.accpetAlert();
+        Browser.acceptAlert();
     }
     public void dismmisAlert(){
         Browser.dismissAlert();
