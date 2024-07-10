@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ISelect;
 import org.openqa.selenium.support.ui.Select;
 import supports.Browser;
 

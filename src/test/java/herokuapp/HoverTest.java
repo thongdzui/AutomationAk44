@@ -1,24 +1,24 @@
 package herokuapp;
 
+import common.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HoverPage;
 
-public class HoverTest {
-    WebDriver driver;
+public class HoverTest extends TestBase {
+
+    HoverPage hoverPage = new HoverPage();
     @Test
     void verifyImageInfo(){
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/hovers");
-        Actions actions = new Actions(driver);
-        actions
-                .moveToElement(driver.findElement(By.xpath("(//div[@class='figure'])[1]")))
-                .perform();
+        hoverPage.open();
+        hoverPage.hoverAction();
 
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='figure'][1]//h5")).getText(),"name: user1");
+
+        Assert.assertEquals(hoverPage.getTextHoverImage1(),"name: user1");
 
     }
 }

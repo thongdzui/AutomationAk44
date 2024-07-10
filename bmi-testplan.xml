@@ -3,7 +3,7 @@
     <test name="Form Authentication Test - Chrome">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="herokuapp.DropDownTest"></class>
+            <class name="herokuapp.HoverTest"></class>
         </classes>
     </test>
 <!--    <test name="Body Mass Index - Chrome">-->

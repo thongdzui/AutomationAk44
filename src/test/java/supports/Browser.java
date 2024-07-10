@@ -130,5 +130,11 @@ public class Browser {
                 .perform();
         driver.switchTo().alert().accept();
     }
+    public static void hoverAction(By locator){
+        Actions actions = new Actions(driver);
+        actions
+                .moveToElement(driver.findElement(locator))
+                .perform();
+    }
 
 }
