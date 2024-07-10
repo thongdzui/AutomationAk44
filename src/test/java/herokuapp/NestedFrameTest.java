@@ -1,5 +1,6 @@
 package herokuapp;
 
+import common.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,35 +8,26 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.NestedFramePage;
 
-public class NestedFrameTest {
-    WebDriver driver;
-    @BeforeMethod
-    void SetUp(){
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/nested_frames");
+public class NestedFrameTest extends TestBase {
+   NestedFramePage nestedFramePage = new NestedFramePage();
 
-    }
+
     @Test
     void verifyFrameContent(){
-        driver.switchTo().frame("frame-top");
-        driver.switchTo().frame("frame-left");
-        Assert.assertEquals(driver.findElement(By.xpath("//html/body")).getText(),"LEFT");
+        nestedFramePage.open();
+        nestedFramePage.switchToLeft();
+        Assert.assertEquals(nestedFramePage.getTextFrameLeft(),"LEFT");
 
-        driver.switchTo().parentFrame();
-        driver.switchTo().frame("frame-middle");
-        Assert.assertEquals(driver.findElement(By.id("content")).getText(),"MIDDLE");
+        nestedFramePage.switchToMiddle();
+        Assert.assertEquals(nestedFramePage.getTextFrameMiddle(),"MIDDLE");
 
-        driver.switchTo().parentFrame();
-        driver.switchTo().frame("frame-right");
-        Assert.assertEquals(driver.findElement(By.xpath("//html/body")).getText(),"RIGHT");
+        nestedFramePage.switchToRight();
+        Assert.assertEquals(nestedFramePage.getTextFrameRight(),"RIGHT");
 
-        driver.switchTo().defaultContent();
-        driver.switchTo().frame("frame-bottom");
-        Assert.assertEquals(driver.findElement(By.xpath("//html/body")).getText(),"BOTTOM");
+        nestedFramePage.switchToBottom();
+        Assert.assertEquals(nestedFramePage.getTextFrameBottom(),"BOTTOM");
     }
-    @AfterMethod
-    void TearDown(){
-        driver.quit();
-    }
+
 }

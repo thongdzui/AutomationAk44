@@ -136,5 +136,11 @@ public class Browser {
                 .moveToElement(driver.findElement(locator))
                 .perform();
     }
+    public static void switchToFrame(String frameName){
+        driver.switchTo().frame(frameName);
+    }
+    public static void switchToParent(){
+        driver.switchTo().parentFrame();
+    }
 
 }
