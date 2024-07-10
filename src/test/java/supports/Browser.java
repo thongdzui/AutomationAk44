@@ -7,6 +7,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -62,6 +63,9 @@ public class Browser {
     }
     public static String getText(By locator){
         return driver.findElement(locator).getText();
+    }
+    public static By getByXpath(String locator){
+        return By.xpath(locator);
     }
     public static void check(By locator){
         if(!driver.findElement(locator).isSelected()){
@@ -141,6 +145,9 @@ public class Browser {
     }
     public static void switchToParent(){
         driver.switchTo().parentFrame();
+    }
+    public static void waitForElementVisible(String locator){
+        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
     }
 
 }
