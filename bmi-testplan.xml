@@ -4,6 +4,7 @@
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="herokuapp.ContextMenuTest"></class>
+            <class name="herokuapp.HyperLinkTest"/>
         </classes>
     </test>
 <!--    <test name="Body Mass Index - Chrome">-->

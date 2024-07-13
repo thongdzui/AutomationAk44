@@ -3,6 +3,7 @@ package supports;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 //selenium owner method
 public class Browser {
@@ -23,7 +25,9 @@ public class Browser {
     public static void launchBrowser(String name){
         switch (name){
             case "chrome":{
-                driver =  new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless=new");
+                driver = new ChromeDriver(chromeOptions);
                 break;
             }
             case "firefox": {
@@ -60,6 +64,9 @@ public class Browser {
     }
     public static WebElement getElement(By locator){
         return driver.findElement(locator);
+    }
+    public static List<WebElement> getElementList(By locator){
+        return driver.findElements(locator);
     }
     public static String getText(By locator){
         return driver.findElement(locator).getText();
